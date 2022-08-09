@@ -115,7 +115,7 @@
 3.멤버변수의 의한 주입
 #### 배열 (list,map,set,propertie ...)
 
-## List
+#### List
 ```
 <bean id="collectionBean"
 		class="com.springbook.ioc.injection.CollectionBean">
@@ -128,7 +128,7 @@
 </bean>
 ```
 
-##### 값을 가져올때
+###### 값을 가져올때
 ```
 AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
 		
@@ -143,7 +143,7 @@ for(String address : addressList) {
 서울시 영등포구 반환
 ```
 
-## Set
+#### Set
 ```
 <bean id="collectionBean"
 	class="com.springbook.ioc.injection.CollectionBean">
@@ -157,7 +157,7 @@ for(String address : addressList) {
 </bean>
 ```
 
-#### 값을 가져올때
+##### 값을 가져올때
 ```
 AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
 		
@@ -169,7 +169,7 @@ for(String address : addressList) {
 }
 ```
 
-## Map
+#### Map
 ```
 <bean id="collectionBean"
 	class="com.springbook.ioc.injection.CollectionBean">
@@ -188,7 +188,7 @@ for(String address : addressList) {
 </bean>
 ```
 
-#### 값을 가져올때
+##### 값을 가져올때
 ```
 AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
 
@@ -203,7 +203,7 @@ while( keys.hasNext() ){
 
 ```
 
-## Properties
+#### Properties
 
 ```
 <bean id="collectionBean"
@@ -218,7 +218,7 @@ while( keys.hasNext() ){
 </bean>
 ```
 
-### 값을 가져올때
+##### 값을 가져올때
 ```
 AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
 		
