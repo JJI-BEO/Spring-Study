@@ -113,7 +113,7 @@
 ```
 
 3.멤버변수의 의한 주입
-### 배열
+##### 배열 (list,map ...)
 ```
 <bean id="collectionBean"
 		class="com.springbook.ioc.injection.CollectionBean">
@@ -124,6 +124,21 @@
 			</list>
 		</property>
 </bean>
+```
+
+##### 값을 가져올때
+```
+AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+		
+CollectionBean bean = (CollectionBean)factory.getBean("collectionBean");
+List<String> addressList = bean.getAddressList();
+
+for(String address : addressList) {
+	System.out.println(address);
+}
+
+서울시 강남구
+서울시 영등포구 반환
 ```
 
 
