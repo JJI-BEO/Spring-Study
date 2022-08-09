@@ -100,15 +100,30 @@
 <bean id="samsungTV" class="polymorphism.SamsungTV" ><!-- scope="prototype" -->
 		<constructor-arg ref="apple"></constructor-arg>
 		<constructor-arg value="270000"></constructor-arg>
-	</bean> 
+</bean> 
 ```
 
 
 2.세터 메소드의 의한 주입
-
-3.멤버변수의 의한 주입
+```
+<bean id="samsungTV" class="polymorphism.SamsungTV" ><!-- scope="prototype" -->		
+		<property name="speaker" ref="apple"></property>
+		<property name="price" value="270000"></property>
+</bean> 
 ```
 
+3.멤버변수의 의한 주입
+### 배열
+```
+<bean id="collectionBean"
+		class="com.springbook.ioc.injection.CollectionBean">
+		<property name="addressList">
+			<list>
+				<value>서울시 강남구</value>
+				<value>서울시 영등포구</value>
+			</list>
+		</property>
+</bean>
 ```
 
 
