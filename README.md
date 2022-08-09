@@ -9,6 +9,7 @@
 	- [빈](#빈)
 	- [의존 주입](#의존-주입)
 	- [어노테이션](#Annotation)
+	- [계층](#계층)
 	- [참고 자료](#참고-자료)
 
 ## 용어
@@ -262,6 +263,108 @@ for(String key : addressList.stringPropertyNames()) {
 > **직접 개발한 클래스**는 어노테이션을 사용할수 있고, XML 설정을 할 수 있다.
 > 하지만 **라이브러리 형태**로 제공되는 클래스는 반드시 XML설정을 통해서 사용해야 한다.(어노테이션 사용 불가)
 ----------
+
+## 계층
+> **Persentation(화면계층)** - 화면에 보여주는 기술을 사용하는 영역
+> 
+> **Business(비즈니스 계층)** - 고객이 원하는 요구사항을 반영하는 계층  
+>  - VO, DAO, Service, Servicelmpl
+>       
+> **Persistence(영속계층 / 데이터 계층)** - 데이터를 어떤 방식으로 보관하고 사용하는가에 대한 설계가 들어가는 계층
+
+---
+
+## 데이터베이스 연결
+>Build Path-> configure Build Path -> Library/Add External JARS -> 필요한JAR파일 열기 -> Deployment Assembly -> ADD -> JAVA Build Path Entries -> 파일추가하기
+>
+
+### oracle cloud 연결설정
+```
+public static Connection getConnection() {
+	try {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection conn = DriverManager.getConnection(
+			"jdbc:oracle:thin:@HYEONM1339_medium?TNS_ADMIN=[파일경로]",
+				"admin", "[비밀번호]");
+		System.out.println("DB 연결 완료");
+		return conn;
+	} catch (ClassNotFoundException e) {
+		System.out.println("JDBC 드라이버 로드 에러");
+	} catch (SQLException e) {
+		System.out.println("DB연결 오류");
+	}
+	return null;
+}
+```
+
+### DataBase close 메소드
+
+
+```
+>public static void close(PreparedStatement stmt, Connection conn) {
+	if (stmt != null) {
+		try {
+			if (!stmt.isClosed())
+				stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			stmt = null;
+		}
+	}
+	if (conn != null) {
+		try {
+			if (!conn.isClosed())
+				conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			conn = null;
+		}
+	}
+}
+public static void close(ResultSet rs, PreparedStatement stmt, Connection conn) {
+	if (rs != null) {
+		try {
+			if (!rs.isClosed())
+				rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			rs = null;
+		}
+	}
+	if (stmt != null) {
+		try {
+			if (!stmt.isClosed())
+				stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			stmt = null;
+		}
+	}
+	if (conn != null) {
+		try {
+			if (!conn.isClosed())
+				conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			conn = null;
+		}
+	}
+}
+```
+
+
+-----
+
 
 ### 참고 자료
 
