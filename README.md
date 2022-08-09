@@ -230,6 +230,13 @@ for(String key : addressList.stringPropertyNames()) {
 ```
 
 
+## Annotation(@)
+```
+<context:component-scan base-package="패키지명(polymorphism)"></context:component-scan>
+--패키지명에 기입된 파일들을 빈으로 등록해준다.
+
+```
+
 ### 참고 자료
 
 * [의존성 주입 관련](https://codevang.tistory.com/312)
