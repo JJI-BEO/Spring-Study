@@ -113,7 +113,9 @@
 ```
 
 3.멤버변수의 의한 주입
-##### 배열 (list,map ...)
+#### 배열 (list,map,set,propertie ...)
+
+## List
 ```
 <bean id="collectionBean"
 		class="com.springbook.ioc.injection.CollectionBean">
@@ -139,6 +141,92 @@ for(String address : addressList) {
 
 서울시 강남구
 서울시 영등포구 반환
+```
+
+## Set
+```
+<bean id="collectionBean"
+	class="com.springbook.ioc.injection.CollectionBean">
+	<property name="addressList">
+		<set value-type="java.lang.String">
+			<value>서울시 강남구</value>
+			<value>서울시 영등포구</value>
+			<value>서울시 영등포구</value>
+		</set>
+	</property>
+</bean>
+```
+
+#### 값을 가져올때
+```
+AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+		
+CollectionBean bean = (CollectionBean)factory.getBean("collectionBean");
+Set<String> addressList = bean.getAddressList();
+
+for(String address : addressList) {
+	System.out.println(address);
+}
+```
+
+## Map
+```
+<bean id="collectionBean"
+	class="com.springbook.ioc.injection.CollectionBean">
+	<property name="addressList">
+		<map>
+			<entry>
+				<key><value>고길동</value></key>
+				<value>서울시 강남구</value>
+			</entry>
+			<entry>
+				<key><value>홍길동</value></key>
+				<value>서울시 영등포구</value>
+			</entry>
+		</map>
+	</property>
+</bean>
+```
+
+#### 값을 가져올때
+```
+AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+
+CollectionBean bean = (CollectionBean)factory.getBean("collectionBean");
+Map<String,String> addressList = bean.getAddressList();
+
+Iterator<String> keys = addressList.keySet().iterator();
+while( keys.hasNext() ){
+	String key = keys.next();
+	System.out.println( String.format("키 : %s, 값 : %s", key, addressList.get(key)) );
+}	
+
+```
+
+## Properties
+
+```
+<bean id="collectionBean"
+	class="com.springbook.ioc.injection.CollectionBean">
+	<property name="addressList">
+
+		<props>
+			<prop key="고길동">서울시 강남구</prop>
+			<prop key="홍길동">서울시 영등포구</prop>
+		</props>
+	</property>
+</bean>
+```
+
+### 값을 가져올때
+```
+AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+		
+CollectionBean bean = (CollectionBean)factory.getBean("collectionBean");
+Properties addressList = bean.getAddressList();
+for(String key : addressList.stringPropertyNames()) {
+	System.out.println(String.format("키: %s / 값 : %s", key,addressList.get(key)));
+}
 ```
 
 
