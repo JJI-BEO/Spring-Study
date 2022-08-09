@@ -7,23 +7,23 @@ public class TVUser {
 
 	public static void main(String[] args) {
 
-		// 1 ê²°í•©ë„ê°€ ë†’ì€ ë°©ì‹ 
+		// 1 °áÇÕµµ°¡ ³ôÀº ¹æ½Ä 
 //		SamsungTV tv = new SamsungTV();
 //		LgTV tv = new LgTV();
 
-		// 2 ë‹¤í˜•ì„± .. interface ì‚¬ìš©í•´ ê²°í•©ë„ë¥¼ ë‚®ì¶”ëŠ” ë°©ì‹ìœ¼ë¡œ ê°œë°œ í•´ì•¼í•œë‹¤
-		// ì‚¼ì„±í‹°ë¹„ì™€ ì—˜ì§€í‹°ë¹„ë¥¼ ì§ì ‘ í˜¸ì¶œí•´ì„œ ì‚¬ìš©í•˜ëŠ”ê²Œì•„ë‹Œ ì¸í„°í˜ì´ìŠ¤ë¥¼ í†µí•´ ì‚¬ìš©í•œë‹¤
+		// 2 ´ÙÇü¼º .. interface »ç¿ëÇØ °áÇÕµµ¸¦ ³·Ãß´Â ¹æ½ÄÀ¸·Î °³¹ß ÇØ¾ßÇÑ´Ù
+		// »ï¼ºÆ¼ºñ¿Í ¿¤ÁöÆ¼ºñ¸¦ Á÷Á¢ È£ÃâÇØ¼­ »ç¿ëÇÏ´Â°Ô¾Æ´Ñ ÀÎÅÍÆäÀÌ½º¸¦ ÅëÇØ »ç¿ëÇÑ´Ù
 //		TV tv = new SamsungTV();
 //		TV tv = new LgTV();
 	
-		// 3 íŒ©í† ë¦¬ì— í˜¸ì¶œí•´ì„œ í•´ë‹¹í•˜ëŠ” í´ë˜ìŠ¤ë¥¼ ê°€ì ¸ì˜¨ë‹¤
+		// 3 ÆÑÅä¸®¿¡ È£ÃâÇØ¼­ ÇØ´çÇÏ´Â Å¬·¡½º¸¦ °¡Á®¿Â´Ù
 //		BeanFactory factory = new BeanFactory(); 
-//		TV tv = (TV)factory.getBean("samsung"); // TVUserí´ë˜ìŠ¤ëŠ” SamsungTV,LgTV í´ë˜ìŠ¤ì˜ ì¡´ì¬ë¥¼ ëª¨ë¥¸ë‹¤
+//		TV tv = (TV)factory.getBean("samsung"); // TVUserÅ¬·¡½º´Â SamsungTV,LgTV Å¬·¡½ºÀÇ Á¸Àç¸¦ ¸ğ¸¥´Ù
 //		TV tv = (TV)factory.getBean("lg");
 
-		// 4  ì˜ˆì „ì—” íŒ©í† ë¦¬ë¥¼ ì§ì ‘ ë§Œë“¤ì–´ì•¼ í–ˆì§€ë§Œ ìŠ¤í”„ë§í”„ë ˆì„ì›Œí¬ì—ì„œ ëŒ€ì‹  ë§Œë“¤ì–´ì£¼ê¸° ë•Œë¬¸ì— ì•ˆë§Œë“¤ì–´ë„ ë¨
+		// 4  ¿¹Àü¿£ ÆÑÅä¸®¸¦ Á÷Á¢ ¸¸µé¾î¾ß ÇßÁö¸¸ ½ºÇÁ¸µÇÁ·¹ÀÓ¿öÅ©¿¡¼­ ´ë½Å ¸¸µé¾îÁÖ±â ¶§¹®¿¡ ¾È¸¸µé¾îµµ µÊ
 		
-		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml"); // ì‹±ê¸€í†¤ íŒ¨í„´ì„
+		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml"); // ½Ì±ÛÅæ ÆĞÅÏÀÓ
 		TV tv = (TV)factory.getBean("samsungTV");
 		TV tv1 = (TV)factory.getBean("samsungTV");
 		TV tv2= (TV)factory.getBean("samsungTV");

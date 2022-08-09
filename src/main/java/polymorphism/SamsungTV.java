@@ -12,24 +12,24 @@ public class SamsungTV implements TV{
 	public SamsungTV() {
 		super();
 		// TODO Auto-generated constructor stub
-		System.out.println("===> SamsungTV ê°ì²´ìƒì„±");
+		System.out.println("===> SamsungTV °´Ã¼»ı¼º");
 	}
 	public SamsungTV(Speaker speaker) {
 		super();
-		System.out.println("--->SamsunTv(2) ê°ì²´ìƒì„±");
+		System.out.println("--->SamsunTv(2) °´Ã¼»ı¼º");
 		this.speaker = speaker;
 	}
 	public SamsungTV(Speaker speaker, int price) {
 		super();
-		System.out.println("--->SamsunTv(3) ê°ì²´ìƒì„±");
+		System.out.println("--->SamsunTv(3) °´Ã¼»ı¼º");
 		this.speaker = speaker;
 		this.price = price;
 	}
 	public void powerOn() {
-		System.out.println("SamsungTv---ì „ì›í‚¨ë‹¤.(ê°€ê²©: "+ price +")");
+		System.out.println("SamsungTv---Àü¿øÅ²´Ù.(°¡°İ: "+ price +")");
 	}
 	public void powerOff() {
-		System.out.println("SamsungTv---ì „ì›ëˆë‹¤.");
+		System.out.println("SamsungTv---Àü¿ø²ö´Ù.");
 	}
 	public void volumeUp() {
 		speaker.volumeUp();

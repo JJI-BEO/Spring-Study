@@ -1,7 +1,7 @@
 package polymorphism;
 
 public class BeanFactory {
-	// í´ë˜ìŠ¤ í˜•ì‹ìœ¼ë¡œ ë§Œë“¤ íŒŒì¼ë“¤ì„ ëª¨ë‘ ë¹ˆìœ¼ë¡œ ë³¸ë‹¤ 
+	// Å¬·¡½º Çü½ÄÀ¸·Î ¸¸µé ÆÄÀÏµéÀ» ¸ğµÎ ºóÀ¸·Î º»´Ù 
 	public Object getBean(String beanName) {
 		
 		if(beanName.equals("samsung")) {

@@ -4,19 +4,19 @@ public class AppleSpeaker implements Speaker{
 
 	public AppleSpeaker() {
 		// TODO Auto-generated constructor stub
-		System.out.println("ì• í”ŒìŠ¤í”¼ì»¤ ê°ì²´ ìƒì„±");
+		System.out.println("¾ÖÇÃ½ºÇÇÄ¿ °´Ã¼ »ı¼º");
 	}
 	
 	
 	@Override
 	public void volumeUp() {
-		System.out.println("ì• í”ŒìŠ¤í”„ì»¤ ë³¼ë¥¨ì˜¬ë¦¼");
+		System.out.println("¾ÖÇÃ½ºÇÁÄ¿ º¼·ı¿Ã¸²");
 		
 	}
 
 	@Override
 	public void volumeDown() {
-		System.out.println("ì• í”ŒìŠ¤í”„ì»¤ ë³¼ë¥¨ë‚´ë¦¼");
+		System.out.println("¾ÖÇÃ½ºÇÁÄ¿ º¼·ı³»¸²");
 		
 	}
 	

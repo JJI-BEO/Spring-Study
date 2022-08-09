@@ -3,13 +3,13 @@ package polymorphism;
 public class SonySpeaker implements Speaker{
 	
 	public SonySpeaker() {
-		System.out.println("===> SonySpeaker ê°ì²´ìƒì„±");
+		System.out.println("===> SonySpeaker °´Ã¼»ý¼º");
 	}
 	
 	public void volumeUp() {
-		System.out.println("SonySpeak --- ì†Œë¦¬ì˜¬ë¦°ë‹¤");
+		System.out.println("SonySpeak --- ¼Ò¸®¿Ã¸°´Ù");
 	}
 	public void volumeDown() {
-		System.out.println("SonySpeak --- ì†Œë¦¬ë‚´ë¦°ë‹¤");
+		System.out.println("SonySpeak --- ¼Ò¸®³»¸°´Ù");
 	}
 }
