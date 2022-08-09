@@ -24,9 +24,7 @@ public class TVUser {
 		// 4  예전엔 팩토리를 직접 만들어야 했지만 스프링프레임워크에서 대신 만들어주기 때문에 안만들어도 됨
 		
 		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml"); // 싱글톤 패턴임
-		TV tv = (TV)factory.getBean("samsungTV");
-		TV tv1 = (TV)factory.getBean("samsungTV");
-		TV tv2= (TV)factory.getBean("samsungTV");
+		TV tv = (TV)factory.getBean("lgTV");
 		
 		tv.powerOn();
 		tv.powerOff();

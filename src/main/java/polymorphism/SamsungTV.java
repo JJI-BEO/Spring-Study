@@ -1,8 +1,10 @@
 package polymorphism;
 
+import lombok.Getter;
 import lombok.Setter;
 
 @Setter
+@Getter
 public class SamsungTV implements TV{
 	
 //    private SonySpeaker speaker;

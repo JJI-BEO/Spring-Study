@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.springbook.biz.vo.BoardVO;
+import com.springbook.biz.board.BoardVO;
 
 import polymorphism.LgTV;
 

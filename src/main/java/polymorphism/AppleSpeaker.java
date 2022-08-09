@@ -1,5 +1,6 @@
 package polymorphism;
 
+//@Component("apple")
 public class AppleSpeaker implements Speaker{
 
 	public AppleSpeaker() {
@@ -10,13 +11,13 @@ public class AppleSpeaker implements Speaker{
 	
 	@Override
 	public void volumeUp() {
-		System.out.println("애플스프커 볼륨올림");
+		System.out.println("애플스피커 볼륨올림");
 		
 	}
 
 	@Override
 	public void volumeDown() {
-		System.out.println("애플스프커 볼륨내림");
+		System.out.println("애플스피커 볼륨내림");
 		
 	}
 	
