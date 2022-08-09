@@ -8,6 +8,7 @@
 	- [결합도](#결합도)
 	- [빈](#빈)
 	- [의존 주입](#의존-주입)
+	- [어노테이션](#Annotation)
 	- [참고 자료](#참고-자료)
 
 ## 용어
@@ -95,6 +96,7 @@
 
 
 ## 의존 주입
+-----
 1.생성자의 의한 주입.
 ```
 <bean id="samsungTV" class="polymorphism.SamsungTV" ><!-- scope="prototype" -->
@@ -102,7 +104,7 @@
 		<constructor-arg value="270000"></constructor-arg>
 </bean> 
 ```
-
+-----
 
 2.세터 메소드의 의한 주입
 ```
@@ -111,7 +113,7 @@
 		<property name="price" value="270000"></property>
 </bean> 
 ```
-
+-----
 3.멤버변수의 의한 주입
 #### 배열 (list,map,set,propertie ...)
 
@@ -142,7 +144,7 @@ for(String address : addressList) {
 서울시 강남구
 서울시 영등포구 반환
 ```
-
+-----
 #### Set
 ```
 <bean id="collectionBean"
@@ -168,7 +170,7 @@ for(String address : addressList) {
 	System.out.println(address);
 }
 ```
-
+-----
 #### Map
 ```
 <bean id="collectionBean"
@@ -202,7 +204,7 @@ while( keys.hasNext() ){
 }	
 
 ```
-
+-----
 #### Properties
 
 ```
@@ -228,14 +230,38 @@ for(String key : addressList.stringPropertyNames()) {
 	System.out.println(String.format("키: %s / 값 : %s", key,addressList.get(key)));
 }
 ```
+-----
 
+### Annotation
 
-## Annotation(@)
-```
-<context:component-scan base-package="패키지명(polymorphism)"></context:component-scan>
---패키지명에 기입된 파일들을 빈으로 등록해준다.
+##### 빈 등록 어노테이션
+> @Component
+>
+> ```
+><context:component-scan base-package="패키지명(polymorphism)"></context:component-scan>
+>--패키지명에 기입된 파일들을 빈으로 등록해준다.
+>
+>연결해줄 클래스 상단에 작성
+>@Component("이름")
+>
+>사용할 클래스에서 불러와서 사용
+>AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+>객체 name = (객체)factory.getBean("이름");
+>
+>```
 
-```
+##### 의존주입 어노테이션
+> ##### @AutoWired
+> 타입이 일치하는 빈을 찾아서 자동주입한다.
+> 2개이상의 클래스가 존재할 경우 @Qualifier를 사용한다.
+> @QualiFier("이름")
+> ```
+> @Autowired
+> @Qualifier("apple")
+> 
+> **직접 개발한 클래스**는 어노테이션을 사용할수 있고, XML 설정을 할 수 있다.
+> 하지만 **라이브러리 형태**로 제공되는 클래스는 반드시 XML설정을 통해서 사용해야 한다.(어노테이션 사용 불가)
+----------
 
 ### 참고 자료
 
