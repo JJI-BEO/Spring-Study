@@ -1,4 +1,4 @@
-# springbook
+# Spring-Study
 
 ## 목차
 
