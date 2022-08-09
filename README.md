@@ -1,4 +1,4 @@
-# springbook
+# Spring-Study
 
 ## 목차
 
@@ -8,6 +8,9 @@
 	- [결합도](#결합도)
 	- [빈](#빈)
 	- [의존 주입](#의존-주입)
+	- [어노테이션](#Annotation)
+	- [계층](#계층)
+	- [DB세팅](#데이터베이스-연결)
 	- [참고 자료](#참고-자료)
 
 ## 용어
@@ -95,21 +98,273 @@
 
 
 ## 의존 주입
+-----
 1.생성자의 의한 주입.
 ```
 <bean id="samsungTV" class="polymorphism.SamsungTV" ><!-- scope="prototype" -->
 		<constructor-arg ref="apple"></constructor-arg>
 		<constructor-arg value="270000"></constructor-arg>
-	</bean> 
+</bean> 
 ```
-
+-----
 
 2.세터 메소드의 의한 주입
-
+```
+<bean id="samsungTV" class="polymorphism.SamsungTV" ><!-- scope="prototype" -->		
+		<property name="speaker" ref="apple"></property>
+		<property name="price" value="270000"></property>
+</bean> 
+```
+-----
 3.멤버변수의 의한 주입
+#### 배열 (list,map,set,propertie ...)
+
+#### List
+```
+<bean id="collectionBean"
+		class="com.springbook.ioc.injection.CollectionBean">
+		<property name="addressList">
+			<list>
+				<value>서울시 강남구</value>
+				<value>서울시 영등포구</value>
+			</list>
+		</property>
+</bean>
 ```
 
+###### 값을 가져올때
 ```
+AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+		
+CollectionBean bean = (CollectionBean)factory.getBean("collectionBean");
+List<String> addressList = bean.getAddressList();
+
+for(String address : addressList) {
+	System.out.println(address);
+}
+
+서울시 강남구
+서울시 영등포구 반환
+```
+-----
+#### Set
+```
+<bean id="collectionBean"
+	class="com.springbook.ioc.injection.CollectionBean">
+	<property name="addressList">
+		<set value-type="java.lang.String">
+			<value>서울시 강남구</value>
+			<value>서울시 영등포구</value>
+			<value>서울시 영등포구</value>
+		</set>
+	</property>
+</bean>
+```
+
+##### 값을 가져올때
+```
+AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+		
+CollectionBean bean = (CollectionBean)factory.getBean("collectionBean");
+Set<String> addressList = bean.getAddressList();
+
+for(String address : addressList) {
+	System.out.println(address);
+}
+```
+-----
+#### Map
+```
+<bean id="collectionBean"
+	class="com.springbook.ioc.injection.CollectionBean">
+	<property name="addressList">
+		<map>
+			<entry>
+				<key><value>고길동</value></key>
+				<value>서울시 강남구</value>
+			</entry>
+			<entry>
+				<key><value>홍길동</value></key>
+				<value>서울시 영등포구</value>
+			</entry>
+		</map>
+	</property>
+</bean>
+```
+
+##### 값을 가져올때
+```
+AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+
+CollectionBean bean = (CollectionBean)factory.getBean("collectionBean");
+Map<String,String> addressList = bean.getAddressList();
+
+Iterator<String> keys = addressList.keySet().iterator();
+while( keys.hasNext() ){
+	String key = keys.next();
+	System.out.println( String.format("키 : %s, 값 : %s", key, addressList.get(key)) );
+}	
+
+```
+-----
+#### Properties
+
+```
+<bean id="collectionBean"
+	class="com.springbook.ioc.injection.CollectionBean">
+	<property name="addressList">
+
+		<props>
+			<prop key="고길동">서울시 강남구</prop>
+			<prop key="홍길동">서울시 영등포구</prop>
+		</props>
+	</property>
+</bean>
+```
+
+##### 값을 가져올때
+```
+AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+		
+CollectionBean bean = (CollectionBean)factory.getBean("collectionBean");
+Properties addressList = bean.getAddressList();
+for(String key : addressList.stringPropertyNames()) {
+	System.out.println(String.format("키: %s / 값 : %s", key,addressList.get(key)));
+}
+```
+-----
+
+### Annotation
+
+##### 빈 등록 어노테이션
+> @Component
+>
+> ```
+><context:component-scan base-package="패키지명(polymorphism)"></context:component-scan>
+>--패키지명에 기입된 파일들을 빈으로 등록해준다.
+>
+>연결해줄 클래스 상단에 작성
+>@Component("이름")
+>
+>사용할 클래스에서 불러와서 사용
+>AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+>객체 name = (객체)factory.getBean("이름");
+>
+>```
+
+##### 의존주입 어노테이션
+> ##### @AutoWired
+> 타입이 일치하는 빈을 찾아서 자동주입한다.
+> 2개이상의 클래스가 존재할 경우 @Qualifier를 사용한다.
+> @QualiFier("이름")
+> ```
+> @Autowired
+> @Qualifier("apple")
+> 
+> **직접 개발한 클래스**는 어노테이션을 사용할수 있고, XML 설정을 할 수 있다.
+> 하지만 **라이브러리 형태**로 제공되는 클래스는 반드시 XML설정을 통해서 사용해야 한다.(어노테이션 사용 불가)
+----------
+
+## 계층
+> **Persentation(화면계층)** - 화면에 보여주는 기술을 사용하는 영역
+> 
+> **Business(비즈니스 계층)** - 고객이 원하는 요구사항을 반영하는 계층  
+>  - VO, DAO, Service, Servicelmpl
+>       
+> **Persistence(영속계층 / 데이터 계층)** - 데이터를 어떤 방식으로 보관하고 사용하는가에 대한 설계가 들어가는 계층
+
+---
+
+## 데이터베이스 연결
+>Build Path-> configure Build Path -> Library/Add External JARS -> 필요한JAR파일 열기 -> Deployment Assembly -> ADD -> JAVA Build Path Entries -> 파일추가하기
+>
+
+### oracle cloud 연결설정
+```
+public static Connection getConnection() {
+	try {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection conn = DriverManager.getConnection(
+			"jdbc:oracle:thin:@HYEONM1339_medium?TNS_ADMIN=[파일경로]",
+				"admin", "[비밀번호]");
+		System.out.println("DB 연결 완료");
+		return conn;
+	} catch (ClassNotFoundException e) {
+		System.out.println("JDBC 드라이버 로드 에러");
+	} catch (SQLException e) {
+		System.out.println("DB연결 오류");
+	}
+	return null;
+}
+```
+
+### DataBase close 메소드
+
+
+```
+>public static void close(PreparedStatement stmt, Connection conn) {
+	if (stmt != null) {
+		try {
+			if (!stmt.isClosed())
+				stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			stmt = null;
+		}
+	}
+	if (conn != null) {
+		try {
+			if (!conn.isClosed())
+				conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			conn = null;
+		}
+	}
+}
+public static void close(ResultSet rs, PreparedStatement stmt, Connection conn) {
+	if (rs != null) {
+		try {
+			if (!rs.isClosed())
+				rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			rs = null;
+		}
+	}
+	if (stmt != null) {
+		try {
+			if (!stmt.isClosed())
+				stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			stmt = null;
+		}
+	}
+	if (conn != null) {
+		try {
+			if (!conn.isClosed())
+				conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			conn = null;
+		}
+	}
+}
+```
+
+
+-----
 
 
 ### 참고 자료
